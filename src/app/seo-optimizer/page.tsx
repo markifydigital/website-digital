@@ -25,26 +25,28 @@ export default function SeoOptimizerPage() {
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<OptimizerResult | null>(null);
 
-  const handleOptimize = async () => {
+  const optimizeContent = async () => {
     setLoading(true);
     setError(null);
     setResult(null);
 
     try {
-      // 🔹 Simulated AI optimization (replace with API later)
+      // 🔹 Simulated SEO optimization
       await new Promise((r) => setTimeout(r, 1200));
 
       setResult({
         optimizedContent:
-          content + '\n\n[SEO Optimized Version with better keywords]',
+          content +
+          '\n\n[Optimized with improved keywords, headings & readability]',
         suggestions: [
-          'Add focus keyword in H1',
-          'Improve meta description length',
-          'Use internal links',
+          'Add primary keyword in H1',
+          'Improve meta description',
+          'Increase internal linking',
+          'Use schema markup',
         ],
       });
-    } catch (e) {
-      setError('Something went wrong. Please try again.');
+    } catch {
+      setError('Failed to optimize content. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -58,7 +60,7 @@ export default function SeoOptimizerPage() {
             AI SEO Optimizer
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Optimize your website content using AI-powered SEO suggestions.
+            Optimize your website content with AI-powered SEO suggestions.
           </p>
         </div>
 
@@ -84,19 +86,16 @@ export default function SeoOptimizerPage() {
 
             <Button
               size="lg"
-              onClick={handleOptimize}
+              onClick={optimizeContent}
               disabled={loading || !content.trim()}
             >
-              {loading ? 'Optimizing...' : 'Optimize Content'}
+              {loading ? 'Optimizing…' : 'Optimize Content'}
             </Button>
           </CardContent>
         </Card>
 
         {error && (
-          <Alert
-            variant="destructive"
-            className="mx-auto mt-8 max-w-4xl"
-          >
+          <Alert variant="destructive" className="mx-auto mt-8 max-w-4xl">
             <Terminal className="h-4 w-4" />
             <AlertTitle>Error</AlertTitle>
             <AlertDescription>{error}</AlertDescription>
