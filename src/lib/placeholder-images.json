@@ -1,0 +1,106 @@
+{
+  "placeholderImages": [
+    {
+      "id": "portfolio_1_before",
+      "description": "Before image for portfolio project 1",
+      "imageUrl": "https://images.unsplash.com/photo-1668885308709-44bb908d95a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxvbGQlMjB3ZWJzaXRlfGVufDB8fHx8MTc2NDkwNzMzNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "old website"
+    },
+    {
+      "id": "portfolio_1_after",
+      "description": "After image for portfolio project 1",
+      "imageUrl": "https://images.unsplash.com/photo-1630522790545-67ad2cb700fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtb2Rlcm4lMjB3ZWJzaXRlfGVufDB8fHx8MTc2NDkwNzMzNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern website"
+    },
+    {
+      "id": "portfolio_2_before",
+      "description": "Before image for portfolio project 2",
+      "imageUrl": "https://images.unsplash.com/photo-1709873582570-4f17d43921d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvdXRkYXRlZCUyMGxvZ298ZW58MHx8fHwxNzY0OTA3MzM2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "outdated logo"
+    },
+    {
+      "id": "portfolio_2_after",
+      "description": "After image for portfolio project 2",
+      "imageUrl": "https://images.unsplash.com/photo-1690766637396-762ac18d3c52?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxuZXclMjBsb2dvfGVufDB8fHx8MTc2NDkwNzMzNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "new logo"
+    },
+    {
+      "id": "portfolio_3_main",
+      "description": "Main image for portfolio project 3",
+      "imageUrl": "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c29jaWFsJTIwbWVkaWF8ZW58MHx8fHwxNzY0ODE4MTkwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "social media"
+    },
+    {
+      "id": "client_logo_engineering",
+      "description": "Logo for a local engineering firm.",
+      "imageUrl": "https://images.unsplash.com/photo-1761044291820-bf089200e4fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxlbmdpbmVlcmluZyUyMGxvZ298ZW58MHx8fHwxNzY0OTE1NDUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "engineering logo"
+    },
+    {
+      "id": "client_logo_hospital",
+      "description": "Logo for a local hospital.",
+      "imageUrl": "https://images.unsplash.com/photo-1739185069005-8cb46fef2702?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxob3NwaXRhbCUyMGxvZ298ZW58MHx8fHwxNzY0OTAzMzg4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hospital logo"
+    },
+    {
+      "id": "client_logo_protein",
+      "description": "Logo for a local protein brand.",
+      "imageUrl": "https://images.unsplash.com/photo-1587669284425-804ea20293fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwcm90ZWluJTIwYnJhbmR8ZW58MHx8fHwxNzY0OTE1NDUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "protein brand"
+    },
+    {
+      "id": "client_logo_construction",
+      "description": "Logo for a local construction company.",
+      "imageUrl": "https://images.unsplash.com/photo-1630349713703-08b0f938487c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb25zdHJ1Y3Rpb24lMjBsb2dvfGVufDB8fHx8MTc2NDg0MzMxOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "construction logo"
+    },
+    {
+      "id": "client_logo_clinic",
+      "description": "Logo for a local health clinic.",
+      "imageUrl": "https://images.unsplash.com/photo-1759768313058-02218212c9f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjbGluaWMlMjBsb2dvfGVufDB8fHx8MTc2NDg4NDgxNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "clinic logo"
+    },
+    {
+      "id": "client_logo_gym",
+      "description": "Logo for a local gym.",
+      "imageUrl": "https://images.unsplash.com/photo-1711006366881-5076ba350008?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxneW0lMjBsb2dvfGVufDB8fHx8MTc2NDkxNTQ1M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gym logo"
+    },
+    {
+      "id": "service_social_media",
+      "description": "People collaborating around a table with social media icons.",
+      "imageUrl": "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c29jaWFsJTIwbWVkaWF8ZW58MHx8fHwxNzY0ODE4MTkwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "social media"
+    },
+    {
+      "id": "service_seo",
+      "description": "A computer screen showing search engine results.",
+      "imageUrl": "https://images.unsplash.com/photo-1686061592689-312bbfb5c055?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxTRU8lMjBhbmFseXRpY3N8ZW58MHx8fHwxNzY0OTEzNzQ5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "SEO analytics"
+    },
+    {
+      "id": "service_web_dev",
+      "description": "A developer writing code on a laptop.",
+      "imageUrl": "https://images.unsplash.com/photo-1457305237443-44c3d5a30b89?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3ZWIlMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NjQ5MDE3NDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "web development"
+    },
+    {
+      "id": "service_branding",
+      "description": "A designer sketching logos.",
+      "imageUrl": "https://images.unsplash.com/photo-1654481414716-2f4ab5fe0fbe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxicmFuZGluZyUyMGRlc2lnbnxlbnwwfHx8fDE3NjQ5MTM3NDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "branding design"
+    },
+    {
+      "id": "service_ads",
+      "description": "A chart showing ad campaign performance.",
+      "imageUrl": "https://images.unsplash.com/photo-1511268559489-34b624fbfcf5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkaWdpdGFsJTIwYWRzfGVufDB8fHx8MTc2NDkxMzc0OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "digital ads"
+    },
+    {
+      "id": "service_content",
+      "description": "A person writing content on a laptop.",
+      "imageUrl": "https://images.unsplash.com/photo-1686061592315-af9342dc8d74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb250ZW50JTIwY3JlYXRpb258ZW58MHx8fHwxNzY0ODU3NzM5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "content creation"
+    }
+  ]
+}

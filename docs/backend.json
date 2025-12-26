@@ -1,0 +1,264 @@
+{
+  "entities": {
+    "Service": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Service",
+      "type": "object",
+      "description": "Represents a service offered by Markify Digital.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Service entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the service (e.g., Social Media Marketing)."
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the service."
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon associated with the service (e.g., a FontAwesome class or image URL)."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "icon"
+      ]
+    },
+    "PortfolioItem": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "PortfolioItem",
+      "type": "object",
+      "description": "Represents a portfolio item showcasing Markify Digital's work.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the PortfolioItem entity."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the portfolio item."
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief description of the portfolio item."
+        },
+        "beforeImageUrl": {
+          "type": "string",
+          "description": "URL of the 'before' image."
+        },
+        "afterImageUrl": {
+          "type": "string",
+          "description": "URL of the 'after' image."
+        },
+        "clientLogoUrl": {
+          "type": "string",
+          "description": "URL of the client's logo."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "beforeImageUrl",
+        "afterImageUrl",
+        "clientLogoUrl"
+      ]
+    },
+    "Testimonial": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Testimonial",
+      "type": "object",
+      "description": "Represents a client testimonial.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Testimonial entity."
+        },
+        "author": {
+          "type": "string",
+          "description": "Name of the testimonial author."
+        },
+        "text": {
+          "type": "string",
+          "description": "Text of the testimonial."
+        },
+        "authorTitle": {
+          "type": "string",
+          "description": "Title of the author (e.g., CEO of Company)."
+        }
+      },
+      "required": [
+        "id",
+        "author",
+        "text",
+        "authorTitle"
+      ]
+    },
+    "ContactFormEntry": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ContactFormEntry",
+      "type": "object",
+      "description": "Represents an entry submitted through the contact form.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the ContactFormEntry entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the person submitting the form."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the person submitting the form.",
+          "format": "email"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message submitted through the form."
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Timestamp of when the form was submitted.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "message",
+        "timestamp"
+      ]
+    },
+    "WebsiteContent": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "WebsiteContent",
+      "type": "object",
+      "description": "Represents the content for a specific section of the website.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the WebsiteContent entity."
+        },
+        "page": {
+          "type": "string",
+          "description": "The page this content belongs to (e.g., 'Home', 'About Us')."
+        },
+        "section": {
+          "type": "string",
+          "description": "The section within the page this content belongs to (e.g., 'Hero', 'Why Choose Us')."
+        },
+        "content": {
+          "type": "string",
+          "description": "The actual content (HTML or text) for the section."
+        }
+      },
+      "required": [
+        "id",
+        "page",
+        "section",
+        "content"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous",
+      "google",
+      "phone"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/services/{serviceId}",
+        "definition": {
+          "entityName": "Service",
+          "schema": {
+            "$ref": "#/backend/entities/Service"
+          },
+          "description": "Stores information about services offered by Markify Digital.",
+          "params": [
+            {
+              "name": "serviceId",
+              "description": "Unique identifier for the service."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/portfolio_items/{portfolioItemId}",
+        "definition": {
+          "entityName": "PortfolioItem",
+          "schema": {
+            "$ref": "#/backend/entities/PortfolioItem"
+          },
+          "description": "Stores portfolio items showcasing Markify Digital's work.",
+          "params": [
+            {
+              "name": "portfolioItemId",
+              "description": "Unique identifier for the portfolio item."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/testimonials/{testimonialId}",
+        "definition": {
+          "entityName": "Testimonial",
+          "schema": {
+            "$ref": "#/backend/entities/Testimonial"
+          },
+          "description": "Stores client testimonials.",
+          "params": [
+            {
+              "name": "testimonialId",
+              "description": "Unique identifier for the testimonial."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/contact_form_entries/{contactFormEntryId}",
+        "definition": {
+          "entityName": "ContactFormEntry",
+          "schema": {
+            "$ref": "#/backend/entities/ContactFormEntry"
+          },
+          "description": "Stores contact form submissions.",
+          "params": [
+            {
+              "name": "contactFormEntryId",
+              "description": "Unique identifier for the contact form entry."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/website_content/{websiteContentId}",
+        "definition": {
+          "entityName": "WebsiteContent",
+          "schema": {
+            "$ref": "#/backend/entities/WebsiteContent"
+          },
+          "description": "Stores content for different sections of the website.",
+          "params": [
+            {
+              "name": "websiteContentId",
+              "description": "Unique identifier for the website content."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore data structure is designed to prioritize security, scalability, and ease of management for the Markify Digital website content and user interactions. It leverages structural segregation and denormalization to achieve authorization independence and support secure list operations (QAPs). Website content, portfolio items, and testimonials are stored in top-level collections, enabling easy querying and management. Contact form entries are also stored in a top-level collection but secured to prevent unauthorized access. The structure avoids hierarchical authorization dependencies by storing all data required for authorization directly within each document, following the principle of Authorization Independence. This approach eliminates the need for complex `get()` calls in security rules, simplifying the rules and improving the atomicity of operations."
+  }
+}

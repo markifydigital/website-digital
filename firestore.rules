@@ -1,0 +1,99 @@
+/**
+ * Core Philosophy: This ruleset is designed for a public-facing corporate or marketing website. The primary security model is to make website content (services, portfolio, testimonials) publicly readable by all visitors, while completely locking down any client-side write operations to prevent vandalism or unauthorized changes. Content is expected to be managed by administrators using the Firebase Admin SDK, which bypasses these rules. User-submitted data, such as contact form entries, is handled with a "write-once, read-never" policy, allowing anyone to submit data but preventing anyone from reading it back, thus protecting privacy.
+ *
+ * Data Structure: The data is organized into a flat hierarchy with several top-level collections. There are no nested subcollections. This simple structure makes querying straightforward and security rules easy to apply.
+ * - /services: Public information about company services.
+ * - /portfolio_items: Public case studies or portfolio work.
+ * - /testimonials: Public client testimonials.
+ * - /website_content: General content snippets for the website.
+ * - /contact_form_entries: Private submissions from the website's contact form.
+ *
+ * Key Security Decisions:
+ * - Public Content is Read-Only: All collections containing website content (`services`, `portfolio_items`, `testimonials`, `website_content`) are publicly readable but cannot be modified by any client. This is the most secure posture for a content-driven site and assumes a trusted backend or the Firebase Console will be used for content management.
+ * - Contact Form is Write-Only: The `contact_form_entries` collection allows any user (authenticated or anonymous) to create a new document. However, reading, updating, or deleting these entries is explicitly forbidden to protect the privacy of the submitted information.
+ * - No User-Specific Data: This ruleset does not manage user-specific data or user accounts beyond allowing anonymous submissions. There are no user profiles or private user documents.
+ *
+ * Denormalization for Authorization: This ruleset does not require complex authorization checks, as the data is either public-read-only or public-create-only. Therefore, denormalization for authorization purposes is not a factor in this configuration.
+ *
+ * Structural Segregation: The design correctly segregates public-facing content (e.g., `/services`) from private, user-submitted data (`/contact_form_entries`) into separate top-level collections. This is a best practice that simplifies security and prevents accidental data leakage.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Controls access to the collection of services offered by the company.
+     * @path /services/{serviceId}
+     * @allow (get) Any user, signed-in or not, can read a specific service document.
+     * @deny (create) No user can create a new service document from the client.
+     * @principle Public content should be readable by everyone but writable only by trusted server processes (e.g., Admin SDK), not clients.
+     */
+    match /services/{serviceId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description Controls access to the collection of portfolio items.
+     * @path /portfolio_items/{portfolioItemId}
+     * @allow (list) Any user, signed-in or not, can list all portfolio items.
+     * @deny (update) No user can update an existing portfolio item from the client.
+     * @principle Public content should be readable by everyone but writable only by trusted server processes (e.g., Admin SDK), not clients.
+     */
+    match /portfolio_items/{portfolioItemId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description Controls access to the collection of client testimonials.
+     * @path /testimonials/{testimonialId}
+     * @allow (get) Any visitor can read a specific testimonial.
+     * @deny (delete) No user can delete a testimonial from the client.
+     * @principle Public content should be readable by everyone but writable only by trusted server processes (e.g., Admin SDK), not clients.
+     */
+    match /testimonials/{testimonialId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description Controls access to private contact form submissions.
+     * @path /contact_form_entries/{contactFormEntryId}
+     * @allow (create) Any user, including anonymous visitors, can submit (create) a contact form entry.
+     * @deny (get) No user can read a contact form entry after it has been submitted. This protects user privacy.
+     * @principle Implements a "write-only" or "dropbox" pattern. Data can be submitted but cannot be read, listed, or modified by any client.
+     */
+    match /contact_form_entries/{contactFormEntryId} {
+      allow create: if true;
+      allow get: if false;
+      allow list: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description Controls access to the collection of general website content snippets.
+     * @path /website_content/{websiteContentId}
+     * @allow (list) Any user can query and list all website content documents.
+     * @deny (create) No client is permitted to create new website content.
+     * @principle Public content should be readable by everyone but writable only by trusted server processes (e.g., Admin SDK), not clients.
+     */
+    match /website_content/{websiteContentId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+  }
+}
