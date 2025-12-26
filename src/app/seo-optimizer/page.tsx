@@ -1,94 +1,132 @@
 'use client';
 
-import { useActionState, useFormStatus } from 'react-dom';
-import { optimizeContentAction, type FormState } from './actions';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Terminal, Bot, Lightbulb } from 'lucide-react';
 
-const initialState: FormState = {
-  message: '',
+type OptimizerResult = {
+  optimizedContent: string;
+  suggestions: string[];
 };
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" disabled={pending} size="lg">
-      {pending ? 'Optimizing...' : 'Optimize Content'}
-    </Button>
-  );
-}
-
 export default function SeoOptimizerPage() {
-  const [state, formAction] = useActionState(optimizeContentAction, initialState);
+  const [content, setContent] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<OptimizerResult | null>(null);
+
+  const handleOptimize = async () => {
+    setLoading(true);
+    setError(null);
+    setResult(null);
+
+    try {
+      // 🔹 Simulated AI optimization (replace with API later)
+      await new Promise((r) => setTimeout(r, 1200));
+
+      setResult({
+        optimizedContent:
+          content + '\n\n[SEO Optimized Version with better keywords]',
+        suggestions: [
+          'Add focus keyword in H1',
+          'Improve meta description length',
+          'Use internal links',
+        ],
+      });
+    } catch (e) {
+      setError('Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
       <div className="container py-12">
         <div className="text-center">
-            <h1 className="font-headline text-4xl font-extrabold tracking-tight md:text-5xl">AI SEO Optimizer</h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Leverage our AI to refine your content. This tool dynamically adjusts content for SEO based on focus keywords like 'digital marketing agency', 'SEO services', and current search trends.
-            </p>
+          <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl">
+            AI SEO Optimizer
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+            Optimize your website content using AI-powered SEO suggestions.
+          </p>
         </div>
 
         <Card className="mx-auto mt-12 max-w-4xl">
-            <CardHeader>
-                <CardTitle>Content Input</CardTitle>
-                <CardDescription>Enter the content you wish to optimize for search engines.</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <form action={formAction} className="space-y-6">
-                    <div>
-                        <Label htmlFor="content" className="sr-only">Content</Label>
-                        <Textarea 
-                            id="content"
-                            name="content"
-                            rows={10}
-                            placeholder="Paste your website content here..."
-                            required
-                        />
-                         {state.issues && (
-                            <p className="mt-2 text-sm text-destructive">{state.issues.join(', ')}</p>
-                        )}
-                    </div>
-                    <SubmitButton />
-                </form>
-            </CardContent>
+          <CardHeader>
+            <CardTitle>Content Input</CardTitle>
+            <CardDescription>
+              Paste the content you want to optimize.
+            </CardDescription>
+          </CardHeader>
+
+          <CardContent className="space-y-6">
+            <div>
+              <Label htmlFor="content">Content</Label>
+              <Textarea
+                id="content"
+                rows={10}
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                placeholder="Paste your website content here..."
+              />
+            </div>
+
+            <Button
+              size="lg"
+              onClick={handleOptimize}
+              disabled={loading || !content.trim()}
+            >
+              {loading ? 'Optimizing...' : 'Optimize Content'}
+            </Button>
+          </CardContent>
         </Card>
 
-        {state.message && !state.data && (
-            <Alert variant={state.issues ? "destructive" : "default"} className="mx-auto mt-8 max-w-4xl">
-                <Terminal className="h-4 w-4" />
-                <AlertTitle>{state.issues ? "Error" : "Status"}</AlertTitle>
-                <AlertDescription>{state.message}</AlertDescription>
-            </Alert>
+        {error && (
+          <Alert
+            variant="destructive"
+            className="mx-auto mt-8 max-w-4xl"
+          >
+            <Terminal className="h-4 w-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
         )}
 
-        {state.data && (
-            <div className="mx-auto mt-12 max-w-4xl space-y-8">
-                <Alert variant="default" className="bg-primary/10 border-primary/20">
-                    <Bot className="h-4 w-4 text-primary" />
-                    <AlertTitle className="text-primary">Optimized Content</AlertTitle>
-                    <AlertDescription className="prose prose-sm max-w-none text-foreground">
-                        <p>{state.data.optimizedContent}</p>
-                    </AlertDescription>
-                </Alert>
-                <Alert variant="default" className="bg-accent/10 border-accent/20">
-                    <Lightbulb className="h-4 w-4 text-accent" />
-                    <AlertTitle className="text-accent">Improvement Suggestions</AlertTitle>
-                    <AlertDescription>
-                       <ul className="list-disc pl-5 space-y-1">
-                          {state.data.suggestions.map((suggestion, index) => (
-                            <li key={index}>{suggestion}</li>
-                          ))}
-                       </ul>
-                    </AlertDescription>
-                </Alert>
-            </div>
+        {result && (
+          <div className="mx-auto mt-12 max-w-4xl space-y-8">
+            <Alert className="border-primary/20 bg-primary/10">
+              <Bot className="h-4 w-4 text-primary" />
+              <AlertTitle>Optimized Content</AlertTitle>
+              <AlertDescription>
+                <p className="whitespace-pre-wrap">
+                  {result.optimizedContent}
+                </p>
+              </AlertDescription>
+            </Alert>
+
+            <Alert className="border-accent/20 bg-accent/10">
+              <Lightbulb className="h-4 w-4 text-accent" />
+              <AlertTitle>Improvement Suggestions</AlertTitle>
+              <AlertDescription>
+                <ul className="list-disc pl-5 space-y-1">
+                  {result.suggestions.map((s, i) => (
+                    <li key={i}>{s}</li>
+                  ))}
+                </ul>
+              </AlertDescription>
+            </Alert>
+          </div>
         )}
       </div>
     </div>
