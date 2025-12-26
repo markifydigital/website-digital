@@ -7,7 +7,7 @@ import Link from 'next/link';
 const getImage = (id: string) => PlaceHolderImages.find(img => img.id === id) as ImagePlaceholder;
 
 // A mapping from string names to Lucide icon components
-export const ICONS: { [key: string]: Icon } = {
+export const ICONS: { [key: string]: typeof Share2 } = {
     Share2,
     Search,
     Code,
